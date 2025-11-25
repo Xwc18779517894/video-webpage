@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输入后播放视频</title>
+    <style>
+        #myVideo {
+            width: 100%;
+            max-width: 1600px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            /* 手机端优化：增加视频边距，更易点击 */
+            padding: 10px;
+        }
+        body {
+            padding: 15px;
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 把下面 src 引号里的内容，换成你第一步得到的视频直链！ -->
+    <video 
+        id="myVideo" 
+        src="https://www.alipan.com/d/BGmTz64GJbE/preview" 
+        controls  
+        preload="auto"
+        muted>  
+    </video>
+    <script>
+        // 手机端优化：弹窗文字更清晰，适配手机屏幕
+        const userAnswer = prompt("3600-1=?", "请输入数字答案");
+        if (userAnswer !== null && userAnswer.trim() !== "") {  
+            const video = document.getElementById("myVideo"); 
+            video.play().then(() => {
+                // 自动播放成功提示（手机端少见）
+            }).catch(err => {
+                // 手机端大概率触发这个提示，更友好
+                alert("回答成功！请点击视频上的「播放按钮」开始观看～");
+                console.log("手机浏览器限制：", err);
+            });
+        } else {
+            alert("请输入正确的答案哦～");
+        }
+    </script>
+</body>
+</html>
